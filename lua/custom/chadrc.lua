@@ -4,8 +4,8 @@ local M = {}
 local highlights = require "custom.highlights"
 
 M.ui = {
-  theme = "onedark",
-  theme_toggle = { "onedark", "one_light" },
+  theme = "catppuccin",
+  theme_toggle = { "catppuccin", "one_light" },
   lsp_semantic_tokens = false, -- needs nvim v0.9, just adds highlight groups for lsp semantic tokens
   hl_override = highlights.override,
   hl_add = highlights.add,
@@ -31,16 +31,16 @@ M.ui = {
 
         -- Iterate through all the clients for the current buffer
         for _, client in pairs(vim.lsp.buf_get_clients()) do
-          -- Skip the client if its name is "null-ls"
-          if client.name ~= "null-ls" then
-            -- Add the client name to the `clients` table
-            table.insert(clients, client.name)
-          end
+          -- Add the client name to the `clients` table
+          table.insert(clients, client.name)
         end
 
-        local formatters = require("conform").list_formatters(0)
-        for _, formatter in pairs(formatters) do
-          table.insert(clients, formatter.name)
+        local status_ok, conform = pcall(require, "conform")
+        if status_ok then
+          local formatters = conform.list_formatters(0)
+          for _, formatter in pairs(formatters) do
+            table.insert(clients, formatter.name)
+          end
         end
 
         if #clients == 0 then
