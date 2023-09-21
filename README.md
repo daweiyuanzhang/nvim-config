@@ -62,12 +62,13 @@ Before you dive in, ensure you have the following requirements installed:
 To get started, follow these steps:
 
 1. Remove or move your current `nvim` directory (if it exists) and make sure Neovim is not running.
-2. Clone the configuration:
+2. Clone the configuration and NvChad:
 
    - Linux:
 
      ```sh
-     git clone https://github.com/Alexis12119/nvim-config.git ~/.config/nvim
+     git clone https://github.com/NvChad/NvChad.git ~/.config/nvim
+     git clone https://github.com/Alexis12119/nvim-config.git ~/.config/nvim/lua/custom
      ```
 
    - Windows (Powershell):
@@ -79,7 +80,8 @@ To get started, follow these steps:
    - Windows (CMD):
 
      ```cmd
-     git clone https://github.com/Alexis12119/nvim-config.git %localappdata%\nvim
+     git clone https://github.com/NvChad/NvChad.git %localappdata%\nvim
+     git clone https://github.com/Alexis12119/nvim-config.git %localappdata%\nvim\lua\custom
      ```
 
 3. Run `nvim` and wait for the plugins to be installed.
