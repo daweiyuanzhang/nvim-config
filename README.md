@@ -4,9 +4,7 @@
 
 [![](https://img.shields.io/badge/Neovim-0.9+-blueviolet.svg?style=for-the-badge&color=000F10&logo=Neovim&logoColor=green&labelColor=302D41)](https://github.com/neovim/neovim)
 
-![Home](https://github.com/Alexis12119/nvim-config/assets/74944536/f4d597c0-40b0-4705-886d-d7d284b3d937)
-
-![Preview](https://github.com/Alexis12119/nvim-config/assets/74944536/16728e70-2e05-46a1-a6a7-747bcc95356b)
+![Preview](https://github.com/Alexis12119/nvim-config/assets/74944536/9432597d-6775-48ee-b5db-3678b8184b9c)
 
 </div>
 
@@ -20,7 +18,7 @@
 - **Enhanced Searching**: Improve searching with [flash.nvim](https://github.com/folke/flash.nvim).
 - **Autocompletion**: Experience intelligent autocompletion with [nvim-cmp](https://github.com/hrsh7th/nvim-cmp).
 - **Language Support**: Harness the power of Language Server Protocol with [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig).
-- **Formatting and Linting**: Keep your code clean with [null-ls.nvim](https://github.com/jose-elias-alvarez/null-ls.nvim).
+- **Formatting**: Keep your code clean with [conform.nvim](https://github.com/stevearc/conform.nvim).
 - **Syntax Highlighting**: Enjoy enhanced syntax highlighting with [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter).
 - **Fuzzy Finding**: Find files and more with ease using [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim).
 - **Integrated Terminal**: Access a terminal within Neovim using [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim).
