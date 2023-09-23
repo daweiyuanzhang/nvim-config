@@ -17,15 +17,32 @@ M.conform = {
   formatters_by_ft = {
     lua = { "stylua" },
     python = { "autopep8" },
-    javascript = { "prettier" },
-    html = { "prettier" },
-    markdown = { "prettier" },
-    typescript = { "prettier" },
     cpp = { "clang_format" },
     c = { "clang_format" },
     go = { "gofumpt" },
   },
 }
+
+local prettier_ft = {
+  "angular",
+  "css",
+  "flow",
+  "graphql",
+  "html",
+  "json",
+  "jsx",
+  "javaScript",
+  "less",
+  "markdown",
+  "scss",
+  "typescript",
+  "vue",
+  "yaml",
+}
+
+for _, filetype in pairs(prettier_ft) do
+  M.conform.formatters_by_ft[filetype] = { "prettier" }
+end
 
 M.treesitter = {
   ensure_installed = {
@@ -51,10 +68,11 @@ M.treesitter = {
   },
   context_commentstring = {
     enable = true,
+    enable_autocmd = false,
   },
   textobjects = {
     swap = {
-      enable = true,
+      enable = false,
       swap_next = {
         ["<leader>a"] = "@parameter.inner",
       },
