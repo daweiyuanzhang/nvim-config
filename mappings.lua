@@ -117,7 +117,6 @@ M.Toggleterm = {
 M.LSP = {
   n = {
     ["<leader>lf"] = { ":Format<cr>", "Format", opts = { silent = true } },
-    ["<leader>ll"] = { ":LspLog<cr>", "Log", opts = { silent = true } },
     ["<leader>la"] = { ":Lspsaga code_action<cr>", "Code Action", opts = { silent = true } },
     ["<leader>li"] = { ":LspInfo<cr>", "Info", opts = { silent = true } },
     ["<leader>lo"] = { ":Lspsaga outline<cr>", "Code Outline", opts = { silent = true } },
@@ -134,13 +133,26 @@ M.LSP = {
       "Prev Diagnostic",
       opts = { silent = true },
     },
+    ["<leader>lR"] = { ":LspRestart<cr>", "Restart", opts = { silent = true } },
     ["<leader>lr"] = { ":Lspsaga rename<cr>", "Rename", opts = { silent = true } },
-    ["<leader>ld"] = { ":Telescope diagnostics bufnr=0<cr>", "Document Diagnostics", opts = { silent = true } },
+    ["<leader>ld"] = { ":Telescope diagnostics bufnr=0<cr>", "Buffer Diagnostics", opts = { silent = true } },
     ["<leader>lw"] = { ":Telescope diagnostics<cr>", "Workspace Diagnostics", opts = { silent = true } },
-    ["<leader>ls"] = { ":Telescope lsp_document_symbols<cr>", "Document Symbols", opts = { silent = true } },
+    ["<leader>ls"] = { ":Telescope lsp_document_symbols<cr>", "Buffer Symbols", opts = { silent = true } },
     ["<leader>lS"] = { ":Telescope lsp_workspace_symbols<cr>", "Workspace Symbols", opts = { silent = true } },
   },
+  v = {
+    ["<leader>la"] = {
+      function()
+        vim.lsp.buf.code_action()
+      end,
+      "Code Action",
+    },
+  },
 }
+
+if vim.lsp.inlay_hint then
+  M.LSP.n["<leader>lh"] = { ":lua vim.lsp.inlay_hint(0, nil)<cr>", "Inlay Hint", opts = { silent = true } }
+end
 
 M.Git = {
   n = {
@@ -398,12 +410,6 @@ M.General = {
     },
   },
   v = {
-    ["<leader>la"] = {
-      function()
-        vim.lsp.buf.code_action()
-      end,
-      "Code Action",
-    },
     ["j"] = {
       "v:count == 0 ? 'gj' : 'j'",
       "Better Down",
