@@ -45,16 +45,19 @@ M.ui = {
         return sep_l_hlgroup .. sep_l .. iconHl_group .. icon .. " " .. txt_hl_group .. " " .. txt .. sep_r
       end
 
-      modules[7] = (function()
-        return ""
+      modules[6] = (function()
+        if require("noice").api.status.mode.get() == nil then
+          return " "
+        end
+        return require("noice").api.status.mode.get() .. " "
       end)()
-      modules[11] = (function()
-        return gen_block("", "%L", "%#St_Pos_sep#", "%#St_Pos_bg#", "%#St_Pos_txt#")
+      modules[7] = (function()
+        if require("noice").api.status.command.get() == nil then
+          return " "
+        end
+        return require("noice").api.status.command.get() .. " "
       end)()
       modules[9] = (function()
-        return ""
-      end)()
-      modules[8] = (function()
         local clients = {}
         local bufnr = vim.api.nvim_get_current_buf()
 
@@ -81,6 +84,9 @@ M.ui = {
           ) or "  LSP "
         end
       end)()
+      modules[11] = (function()
+        return gen_block("", "%L", "%#St_Pos_sep#", "%#St_Pos_bg#", "%#St_Pos_txt#")
+      end)()
     end,
   },
 
@@ -89,7 +95,11 @@ M.ui = {
     show_numbers = false,
     enabled = true,
     lazyload = true,
-    overriden_modules = nil,
+    overriden_modules = function(modules)
+      modules[3] = (function()
+        return "%#TblineFill#%@v:lua.ClickUpdate@  %#TblineFill#%@v:lua.ClickGit@  %#TblineFill#%@v:lua.run_code@  %#TblineFill#%@v:lua.ClickSplit@ "
+      end)()
+    end,
   },
 
   nvdash = {
