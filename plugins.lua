@@ -157,7 +157,6 @@ local plugins = {
   -- Syntax Highlighting
   {
     "nvim-treesitter/nvim-treesitter",
-    commit = "b7f2dd5dfbd24a1239844e15637b637b990df164",
     cmd = {
       "TSInstall",
       "TSUninstall",
@@ -179,29 +178,30 @@ local plugins = {
   },
 
   -- AI Autocomplete
-  -- {
-  --   "Exafunction/codeium.vim",
-  --   event = "VeryLazy",
-  --   config = function()
-  --     -- Change '<C-g>' here to any keycode you like.
-  --     vim.keymap.set("i", "<C-g>", function()
-  --       return vim.fn["codeium#Accept"]()
-  --     end, { expr = true })
-  --     vim.keymap.set("i", "<c-;>", function()
-  --       return vim.fn["codeium#CycleCompletions"](1)
-  --     end, { expr = true })
-  --     vim.keymap.set("i", "<c-,>", function()
-  --       return vim.fn["codeium#CycleCompletions"](-1)
-  --     end, { expr = true })
-  --     vim.keymap.set("i", "<c-x>", function()
-  --       return vim.fn["codeium#Clear"]()
-  --     end, { expr = true })
+  {
+    "Exafunction/codeium.vim",
+    enabled = false,
+    event = "VeryLazy",
+    config = function()
+      -- Change '<C-g>' here to any keycode you like.
+      vim.keymap.set("i", "<C-g>", function()
+        return vim.fn["codeium#Accept"]()
+      end, { expr = true })
+      vim.keymap.set("i", "<c-;>", function()
+        return vim.fn["codeium#CycleCompletions"](1)
+      end, { expr = true })
+      vim.keymap.set("i", "<c-,>", function()
+        return vim.fn["codeium#CycleCompletions"](-1)
+      end, { expr = true })
+      vim.keymap.set("i", "<c-x>", function()
+        return vim.fn["codeium#Clear"]()
+      end, { expr = true })
 
-  --     vim.g.codeium_filetypes = {
-  --       ["TelescopePrompt"] = false,
-  --     }
-  --   end,
-  -- },
+      vim.g.codeium_filetypes = {
+        ["TelescopePrompt"] = false,
+      }
+    end,
+  },
 
   -- Schemas
   { "b0o/schemastore.nvim" },
@@ -299,6 +299,9 @@ local plugins = {
       {
         "nvim-telescope/telescope-fzf-native.nvim",
         build = "make",
+        enabled = function()
+          return vim.fn.executable "make" == 1
+        end,
       },
     },
   },
@@ -393,15 +396,16 @@ local plugins = {
   },
 
   -- UI for messages, cmdline, and popup
-  -- {
-  --   "folke/noice.nvim",
-  --   lazy = false,
-  --   opts = overrides.noice,
-  --   dependencies = {
-  --     { "MunifTanjim/nui.nvim" },
-  --     { "rcarriga/nvim-notify" },
-  --   },
-  -- },
+  {
+    "folke/noice.nvim",
+    lazy = false,
+    enabled = false,
+    opts = overrides.noice,
+    dependencies = {
+      { "MunifTanjim/nui.nvim" },
+      { "rcarriga/nvim-notify" },
+    },
+  },
 }
 
 return plugins
