@@ -14,6 +14,12 @@ local function on_attach(bufnr)
 end
 
 M.conform = {
+  format_on_save = {
+    -- These options will be passed to conform.format()
+    async = true,
+    quiet = true,
+    lsp_fallback = true,
+  },
   formatters_by_ft = {
     lua = { "stylua" },
     python = { "autopep8" },

@@ -4,15 +4,16 @@
 
 local command = vim.api.nvim_create_user_command
 
-function FormatCode()
-  require("conform").format { async = true, lsp_fallback = true, quiet = true }
-end
-
 function ClickUpdate()
   vim.cmd "NvChadUpdate"
 end
 
 function ClickGit()
+  local status_ok, _ = pcall(require, "toggleterm")
+  if not status_ok then
+    return vim.notify "toggleterm.nvim isn't installed!!!"
+  end
+
   local Terminal = require("toggleterm.terminal").Terminal
   local lazygit = Terminal:new { cmd = "lazygit", hidden = true }
   lazygit:toggle()
@@ -22,10 +23,23 @@ function ClickSplit()
   vim.cmd "sp"
 end
 
-command("Format", function()
-  FormatCode()
+command("Format", function(args)
+  local status_ok, conform = pcall(require, "conform")
+  if not status_ok then
+    return vim.notify "conform.nvim isn't installed!!!"
+  end
+
+  local range = nil
+  if args.count ~= -1 then
+    local end_line = vim.api.nvim_buf_get_lines(0, args.line2 - 1, args.line2, true)[1]
+    range = {
+      start = { args.line1, 0 },
+      ["end"] = { args.line2, end_line:len() },
+    }
+  end
+  conform.format { async = true, lsp_fallback = true, range = range }
   vim.notify("Format Done", vim.log.levels.INFO, { title = "Format" })
-end, { nargs = "*", desc = "Code Format" })
+end, { nargs = "*", desc = "Code Format", range = true })
 
 command("LuaSnipEdit", function()
   require("luasnip.loaders").edit_snippet_files()

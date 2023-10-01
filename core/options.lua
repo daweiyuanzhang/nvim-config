@@ -10,7 +10,7 @@ local options = {
   ignorecase = true, -- ignore case in search patterns
   mouse = "a", -- allow the mouse to be used in neovim
   pumheight = 8, -- pop up menu height
-  pumblend = 10, -- transparency of pop-up menu
+  pumblend = 0, -- transparency of pop-up menu
   showmode = false, -- we don't need to see things like -- INSERT -- anymore
   smartcase = true, -- smart case
   smartindent = true, -- make indenting smarter again
@@ -35,11 +35,6 @@ local options = {
   lazyredraw = false, -- Won't be redrawn while executing macros, register and other commands.
   termguicolors = true, -- Enables 24-bit RGB color in the TUI
   fillchars = { eob = " ", fold = " ", foldopen = "", foldsep = " ", foldclose = "", lastline = " " }, -- make EndOfBuffer invisible
-  -- foldenable = true,
-  -- foldlevel = 99,
-  -- foldlevelstart = 99,
-  -- foldmethod = "indent",
-  -- foldcolumn = "1",
   ruler = false,
   -- shell = vim.fn.executable "pwsh" and "pwsh" or "powershell",
   -- shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;",

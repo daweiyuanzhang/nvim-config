@@ -63,6 +63,17 @@ local plugins = {
         "stevearc/conform.nvim",
         opts = overrides.conform,
       },
+      -- Start/Stop LSP when focus is lost/gained
+      {
+        "hinell/lsp-timeout.nvim",
+        config = function()
+          vim.g["lsp-timeout-config"] = {
+            stopTimeout = 0,
+            startTimeout = 1,
+            silent = true, -- true to suppress notifications
+          }
+        end,
+      },
       -- Installer
       {
         "williamboman/mason.nvim",
@@ -154,6 +165,41 @@ local plugins = {
     },
   },
 
+  -- Improve Folds
+  {
+    "kevinhwang91/nvim-ufo",
+    event = "VeryLazy",
+    init = function()
+      vim.o.foldcolumn = "1" -- '0' is not bad
+      vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+      vim.o.foldlevelstart = 99
+      vim.o.foldenable = true
+      vim.o.foldmethod = "indent"
+    end,
+    opts = {
+      provider_selector = function(_, _, _)
+        return { "treesitter", "indent" }
+      end,
+    },
+    dependencies = {
+      "kevinhwang91/promise-async",
+      {
+        "luukvbaal/statuscol.nvim",
+        config = function()
+          local builtin = require "statuscol.builtin"
+          require("statuscol").setup {
+            relculright = true,
+            segments = {
+              { text = { builtin.foldfunc, " " }, click = "v:lua.ScFa" },
+              { text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
+              { text = { "%s" }, click = "v:lua.ScSa" },
+            },
+          }
+        end,
+      },
+    },
+  },
+
   -- Syntax Highlighting
   {
     "nvim-treesitter/nvim-treesitter",
@@ -171,6 +217,11 @@ local plugins = {
       "TSBufToggle",
     },
     opts = overrides.treesitter,
+    config = function(_, opts)
+      dofile(vim.g.base46_cache .. "syntax")
+      require("nvim-treesitter.install").prefer_git = false
+      require("nvim-treesitter.configs").setup(opts)
+    end,
     dependencies = {
       "JoosepAlviste/nvim-ts-context-commentstring",
       "nvim-treesitter/nvim-treesitter-textobjects",
@@ -222,7 +273,7 @@ local plugins = {
     cmd = { "Bdelete", "Bwipeout" },
   },
 
-  -- Highlight, list and search todo comments in your projects
+  -- Highlight, List and Search Todo comments in your projects
   {
     "folke/todo-comments.nvim",
     event = "VeryLazy",
