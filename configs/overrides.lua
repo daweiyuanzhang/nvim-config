@@ -13,7 +13,18 @@ local function on_attach(bufnr)
   vim.keymap.set("n", "u", api.tree.change_root_to_parent, opts "Up")
 end
 
-M.conform = {
+M.linters = function()
+  require("lint").linters_by_ft = {
+    python = { "flake8" },
+  }
+  vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+    callback = function()
+      require("lint").try_lint()
+    end,
+  })
+end
+
+M.formatters = {
   format_on_save = {
     -- These options will be passed to conform.format()
     async = true,
@@ -47,7 +58,7 @@ local prettier_ft = {
 }
 
 for _, filetype in pairs(prettier_ft) do
-  M.conform.formatters_by_ft[filetype] = { "prettier" }
+  M.formatters.formatters_by_ft[filetype] = { "prettier" }
 end
 
 M.treesitter = {
@@ -212,6 +223,7 @@ M.mason = {
     "pyright",
     -- "autopep8",
     -- "black",
+    -- "flake8"
 
     -- Go
     -- "gopls",
