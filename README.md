@@ -8,6 +8,60 @@
 
 </div>
 
+## 📄 Requirements
+
+Before you dive in, ensure you have the following requirements installed:
+
+<details>
+<summary>Click to see the requirements</summary>
+
+- **Git:**
+
+  - [lazygit](https://github.com/jesseduffield/lazygit)
+
+- **Telescope:**
+
+  - [fd](https://github.com/sharkdp/fd)
+  - [bat](https://github.com/sharkdp/bat)
+  - [ripgrep](https://github.com/BurntSushi/ripgrep)
+  - [make](https://www.gnu.org/software/make/)
+
+- **Nerd Font (For Icons):**
+
+  - [JetBrainsMono](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/JetBrainsMono)
+  - [Other Fonts](https://www.nerdfonts.com/font-downloads)
+
+- **Neovim:**
+
+  - [Neovim 0.9+](https://github.com/neovim/neovim/releases)
+  </details>
+
+## 💻 Installation
+
+Please follow these steps:
+
+1. **Preparation**:
+
+   - Ensure that Neovim is not running.
+   - Remove or move your current `nvim` directory (if it exists).
+
+2. **Installation**:
+
+   - On Linux/MacOS:
+
+     ```sh
+     bash <(curl -s https://raw.githubusercontent.com/Alexis12119/nvim-config/main/installer/install.sh)
+     ```
+
+   - On Windows (Powershell):
+     ```ps1
+     Invoke-WebRequest https://raw.githubusercontent.com/Alexis12119/nvim-config/main/installer/install.ps1 -UseBasicParsing | Invoke-Expression
+     ```
+
+3. **Plugin Installation**:
+   - The NvChad repository will be cloned to `~/.config/nvim` or `AppData/Local/nvim`, and the required plugins will be installed.
+   - To complete the plugin installation, exit Neovim and then restart it. This ensures that the plugins associated with this custom configuration are properly set up.
+
 ## ✨ Features
 
 - **Plugin Management**: Efficiently manage plugins with [lazy.nvim](https://github.com/folke/lazy.nvim).
@@ -29,53 +83,6 @@
 ## 🌟 Stargazers
 
 I appreciate the support from all the Stargazers! [![Stargazers](https://reporoster.com/stars/dark/notext/Alexis12119/nvim-config)](https://github.com/Alexis12119/Nvchad-user/stargazers)
-
-## 📄 Requirements
-
-Before you dive in, ensure you have the following requirements installed:
-
-- **Git:**
-
-  - [lazygit](https://github.com/jesseduffield/lazygit)
-
-- **Telescope:**
-
-  - [fd](https://github.com/sharkdp/fd)
-  - [bat](https://github.com/sharkdp/bat)
-  - [ripgrep](https://github.com/BurntSushi/ripgrep)
-  - [make](https://www.gnu.org/software/make/)
-
-- **Nerd Font (For Icons):**
-
-  - [JetBrainsMono](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/JetBrainsMono)
-  - [Other Fonts](https://www.nerdfonts.com/font-downloads)
-
-- **Neovim:**
-
-  - [Neovim 0.9+](https://github.com/neovim/neovim/releases)
-
-## 💻 Installation
-
-To get started, follow these steps:
-
-1.  Remove or move your current `nvim` directory (if it exists) and make sure Neovim is not running.
-2.  Clone the configuration and NvChad:
-
-    - Linux/MacOS:
-
-      ```sh
-      bash <(curl -s https://raw.githubusercontent.com/Alexis12119/nvim-config/main/installer/install.sh)
-      ```
-
-    - Windows (Powershell):
-
-      ```ps1
-      Invoke-WebRequest https://raw.githubusercontent.com/Alexis12119/nvim-config/main/installer/install.ps1 -UseBasicParsing | Invoke-Expression
-      ```
-
-3.  Run `nvim` and wait for the plugins to be installed.
-
----
 
 ### CREDITS
 
