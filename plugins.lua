@@ -83,6 +83,18 @@ local plugins = {
           require "custom.configs.nvim-lint"
         end,
       },
+      {
+        "pmizio/typescript-tools.nvim",
+        opts = {
+          settings = {
+            tsserver_file_preferences = {
+              includeInlayParameterNameHints = "all",
+              includeCompletionsForModuleExports = true,
+              quotePreference = "auto",
+            },
+          },
+        },
+      },
       -- Start/Stop LSP when focus is lost/gained
       -- {
       --   "hinell/lsp-timeout.nvim",
