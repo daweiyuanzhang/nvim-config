@@ -47,6 +47,8 @@ Please follow these steps:
 
 2. **Installation**:
 
+   **NOTE:** If you encountered an error after the plugin installation. Just restart `nvim` or press `<Space> + p + s` after you restarted `nvim`.
+
    - On Linux/MacOS:
 
      ```sh
@@ -57,10 +59,6 @@ Please follow these steps:
      ```ps1
      Invoke-WebRequest https://raw.githubusercontent.com/Alexis12119/nvim-config/main/installer/install.ps1 -UseBasicParsing | Invoke-Expression
      ```
-
-3. **Plugin Installation**:
-   - The NvChad repository will be cloned to `~/.config/nvim` or `AppData/Local/nvim`, and the required plugins will be installed.
-   - To complete the plugin installation, exit Neovim and then start it again. This ensures that the plugins associated with this custom configuration are properly set up.
 
 ## ✨ Features
 
@@ -82,7 +80,9 @@ Please follow these steps:
 
 ## 🌟 Stargazers
 
-I appreciate the support from all the Stargazers! [![Stargazers](https://reporoster.com/stars/dark/notext/Alexis12119/nvim-config)](https://github.com/Alexis12119/Nvchad-user/stargazers)
+I appreciate the support from all the Stargazers!
+
+[![Stargazers](https://reporoster.com/stars/dark/notext/Alexis12119/nvim-config)](https://github.com/Alexis12119/nvim-config/stargazers)
 
 ### CREDITS
 
