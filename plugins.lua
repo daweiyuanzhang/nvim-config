@@ -28,6 +28,7 @@ local plugins = {
     end,
     config = function(_, opts)
       table.insert(opts.sources, 2, { name = "codeium" })
+      opts.completion["completeopt"] = "menu,menuone,noselect" -- disable autoselect
       require("cmp").setup(opts)
     end,
     dependencies = {
@@ -295,6 +296,35 @@ local plugins = {
   {
     "NvChad/nvterm",
     enabled = false,
+  },
+
+  {
+    "akinsho/flutter-tools.nvim",
+    ft = "dart",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "stevearc/dressing.nvim",
+    },
+    config = true,
+  },
+  {
+    "nvim-neotest/neotest",
+    init = function()
+      require("core.utils").load_mappings "Neotest"
+    end,
+    dependencies = {
+      "nvim-neotest/neotest-python",
+      "nvim-neotest/neotest-go",
+      -- "marilari88/neotest-vitest",
+      -- "nvim-neotest/neotest-jest",
+      -- "nvim-neotest/neotest-rust",
+      -- "nvim-neotest/neotest-dotnet",
+      -- "nvim-neotest/neotest-java",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    config = function()
+      require "custom.configs.neotest"
+    end,
   },
 
   -- Terminal Integration
