@@ -51,56 +51,56 @@ M.Neotest = {
   n = {
     ["<leader>Tt"] = {
       function()
-        require("neotest").run.run(vim.fn.expand "%")
+        vim.cmd 'lua require("neotest").run.run(vim.fn.expand "%")'
       end,
       "Run File",
       opts = { silent = true },
     },
     ["<leader>TT"] = {
       function()
-        require("neotest").run.run(vim.loop.cwd())
+        vim.cmd 'lua require("neotest").run.run(vim.loop.cwd())'
       end,
       "Run All Test Files",
       opts = { silent = true },
     },
     ["<leader>Tr"] = {
       function()
-        require("neotest").run.run()
+        vim.cmd 'lua require("neotest").run.run()'
       end,
       "Run Nearest",
       opts = { silent = true },
     },
     ["<leader>Td"] = {
       function()
-        require("neotest").run.run { strategy = "dap" }
+        vim.cmd 'lua require("neotest").run.run { strategy = "dap" }'
       end,
       "Run Dap",
       opts = { silent = true },
     },
     ["<leader>Ts"] = {
       function()
-        require("neotest").summary.toggle()
+        vim.cmd 'lua require("neotest").summary.toggle()'
       end,
       "Toggle Summary",
       opts = { silent = true },
     },
     ["<leader>To"] = {
       function()
-        require("neotest").output.open { enter = true, auto_close = true }
+        vim.cmd 'lua require("neotest").output.open { enter = true, auto_close = true }'
       end,
       "Show Output",
       opts = { silent = true },
     },
     ["<leader>TO"] = {
       function()
-        require("neotest").output_panel.toggle()
+        vim.cmd 'lua require("neotest").output_panel.toggle()'
       end,
       "Toggle Output Panel",
       opts = { silent = true },
     },
     ["<leader>TS"] = {
       function()
-        require("neotest").run.stop()
+        vim.cmd 'lua require("neotest").run.stop()'
       end,
       "Stop",
       opts = { silent = true },
@@ -148,14 +148,6 @@ M.Neovim = {
       "Inspect",
       opts = { silent = true },
     }, -- only available on neovim >= 0.9
-    ["<leader>nu"] = {
-      function()
-        local args = "git -C " .. vim.fn.stdpath "config" .. " pull --ff-only"
-        vim.fn.system(args)
-      end,
-      "Update",
-      opts = { silent = true },
-    },
     ["<leader>nm"] = { ":messages<cr>", "Messages", opts = { silent = true } },
     ["<leader>nh"] = { ":checkhealth<cr>", "Health", opts = { silent = true } },
     ["<leader>nv"] = {
@@ -177,7 +169,7 @@ M.Telescope = {
     ["<leader>fm"] = { ":Telescope marks<cr>", "Marks", opts = { silent = true } },
     ["<leader>fw"] = { ":Telescope live_grep<cr>", "Word", opts = { silent = true } },
     ["<leader>ft"] = { ":Telescope themes<cr>", "Themes", opts = { silent = true } },
-    ["<leader>fT"] = { ":TodoTelescope<cr>", "Todo", opts = { silent = true } },
+    ["<leader>fT"] = { ":TodoTrouble<cr>", "Todo", opts = { silent = true } },
     -- B = { ":Telescope bookmarks<cr>", "Browswer Bookmarks" , opts = { silent = true }},
     ["<leader>fb"] = { ":Telescope buffers<cr>", "Buffers", opts = { silent = true } },
     ["<leader>fn"] = {
@@ -226,8 +218,8 @@ M.LSP = {
     },
     ["<leader>lR"] = { ":LspRestart<cr>", "Restart", opts = { silent = true } },
     ["<leader>lr"] = { ":Lspsaga rename<cr>", "Rename", opts = { silent = true } },
-    ["<leader>ld"] = { ":Telescope diagnostics bufnr=0<cr>", "Buffer Diagnostics", opts = { silent = true } },
-    ["<leader>lw"] = { ":Telescope diagnostics<cr>", "Workspace Diagnostics", opts = { silent = true } },
+    ["<leader>ld"] = { ":TroubleToggle document_diagnostics<cr>", "Buffer Diagnostics", opts = { silent = true } },
+    ["<leader>lw"] = { ":TroubleToggle workspace_diagnostics<cr>", "Workspace Diagnostics", opts = { silent = true } },
     ["<leader>ls"] = { ":Telescope lsp_document_symbols<cr>", "Buffer Symbols", opts = { silent = true } },
     ["<leader>lS"] = { ":Telescope lsp_workspace_symbols<cr>", "Workspace Symbols", opts = { silent = true } },
   },

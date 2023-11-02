@@ -258,7 +258,6 @@ local plugins = {
     opts = require "custom.configs.treesitter",
     config = function(_, opts)
       dofile(vim.g.base46_cache .. "syntax")
-      require("nvim-treesitter.install").prefer_git = false
       require("nvim-treesitter.configs").setup(opts)
     end,
     dependencies = {
@@ -289,10 +288,11 @@ local plugins = {
   -- Highlight, List and Search Todo comments in your projects
   {
     "folke/todo-comments.nvim",
-    cmd = { "TodoLocList", "TodoQuickFix", "TodoTelescope" },
+    cmd = { "TodoTrouble", "TodoLocList", "TodoQuickFix", "TodoTelescope" },
     opts = require "custom.configs.todo-comments",
   },
 
+  -- NvChad Built-in Terminal
   {
     "NvChad/nvterm",
     enabled = false,
@@ -378,7 +378,9 @@ local plugins = {
     init = function()
       require("core.utils").load_mappings "Telescope"
     end,
-    opts = require "custom.configs.telescope",
+    opts = function()
+      return require "custom.configs.telescope"
+    end,
     dependencies = {
       {
         "nvim-telescope/telescope-fzf-native.nvim",
@@ -388,6 +390,13 @@ local plugins = {
         end,
       },
     },
+  },
+
+  -- Pretty Diagnostics and Lists
+  {
+    "folke/trouble.nvim",
+    cmd = { "TroubleToggle", "Trouble" },
+    opts = require "custom.configs.trouble",
   },
 
   -- For Java
@@ -482,13 +491,8 @@ local plugins = {
   -- UI for messages, cmdline, and popup
   {
     "folke/noice.nvim",
-    lazy = false,
-    enabled = false,
     opts = require "custom.configs.noice",
-    dependencies = {
-      { "MunifTanjim/nui.nvim" },
-      { "rcarriga/nvim-notify" },
-    },
+    dependencies = { { "MunifTanjim/nui.nvim" }, { "rcarriga/nvim-notify" } },
   },
 }
 
