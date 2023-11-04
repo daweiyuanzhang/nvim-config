@@ -66,10 +66,9 @@ local plugins = {
   -- Native LSP
   {
     "neovim/nvim-lspconfig",
-    init = function()
-      require("core.utils").load_mappings "LSP"
+    config = function()
+      require "custom.configs.lspconfig"
     end,
-    event = "VeryLazy",
     dependencies = {
       -- Formatting
       {
@@ -110,6 +109,10 @@ local plugins = {
       -- Installer
       {
         "williamboman/mason.nvim",
+        init = function()
+          require("core.utils").load_mappings "Mason"
+          require("core.utils").load_mappings "LSP"
+        end,
         cmd = {
           "Mason",
           "MasonInstall",
@@ -126,6 +129,9 @@ local plugins = {
       -- Improve Other LSP Functionalities
       {
         "nvimdev/lspsaga.nvim",
+        init = function()
+          require("core.utils").load_mappings "Lspsaga"
+        end,
         opts = require "custom.configs.lspsaga",
       },
       -- For Plugin Development
@@ -134,11 +140,6 @@ local plugins = {
         opts = require "custom.configs.neodev",
       },
     },
-    config = function()
-      dofile(vim.g.base46_cache .. "lsp")
-      require "nvchad.lsp"
-      require "custom.configs.lspconfig"
-    end,
   },
 
   -- Commenter
@@ -395,6 +396,9 @@ local plugins = {
   -- Pretty Diagnostics and Lists
   {
     "folke/trouble.nvim",
+    init = function()
+      require("core.utils").load_mappings "Trouble"
+    end,
     cmd = { "TroubleToggle", "Trouble" },
     opts = require "custom.configs.trouble",
   },
@@ -491,7 +495,6 @@ local plugins = {
   -- UI for messages, cmdline, and popup
   {
     "folke/noice.nvim",
-    enabled = false,
     opts = require "custom.configs.noice",
     dependencies = { { "MunifTanjim/nui.nvim" }, { "rcarriga/nvim-notify" } },
   },
