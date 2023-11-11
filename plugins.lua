@@ -87,6 +87,7 @@ local plugins = {
           require "custom.configs.nvim-lint"
         end,
       },
+      -- For Typescript
       {
         "pmizio/typescript-tools.nvim",
         opts = {
@@ -110,7 +111,7 @@ local plugins = {
       --     }
       --   end,
       -- },
-      -- Installer
+      -- Package Installer
       {
         "williamboman/mason.nvim",
         init = function()
@@ -267,6 +268,7 @@ local plugins = {
     end,
     dependencies = {
       "JoosepAlviste/nvim-ts-context-commentstring",
+      "windwp/nvim-ts-autotag",
       "nvim-treesitter/nvim-treesitter-textobjects",
     },
   },
