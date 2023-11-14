@@ -4,7 +4,7 @@
 
 [![](https://img.shields.io/badge/Neovim-0.9+-blueviolet.svg?style=for-the-badge&color=000F10&logo=Neovim&logoColor=green&labelColor=302D41)](https://github.com/neovim/neovim)
 
-![bg](https://github.com/Alexis12119/nvim-config/assets/74944536/d1a253ce-f1c5-4255-9ebe-852ee43e668c)
+![Preview](https://github.com/Alexis12119/nvim-config/assets/74944536/d1a253ce-f1c5-4255-9ebe-852ee43e668c)
 
 </div>
 
@@ -13,7 +13,9 @@
 Before you dive in, ensure you have the following requirements installed:
 
 <details>
-<summary>Click to see the requirements</summary>
+<summary>Click to see the requirements</summary><br />
+
+In windows, you can use [scoop](https://scoop.sh/) to install them.
 
 - **Git:**
 
@@ -25,6 +27,7 @@ Before you dive in, ensure you have the following requirements installed:
   - [bat](https://github.com/sharkdp/bat)
   - [ripgrep](https://github.com/BurntSushi/ripgrep)
   - [make](https://www.gnu.org/software/make/)
+  - [mingw-nuwen](https://nuwen.net/mingw.html)
 
 - **Nerd Font (For Icons):**
 
@@ -47,7 +50,7 @@ Please follow these steps:
 
 2. **Installation**:
 
-   **NOTE:** If you encountered an error after the plugin installation. Just restart `nvim` or press `<Space> + p + s` after you restarted `nvim`.
+   **NOTE:** If you encountered an error after the plugin installation. Just restart `nvim`.
 
    - On Linux/MacOS:
 
