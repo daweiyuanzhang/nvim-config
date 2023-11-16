@@ -6,8 +6,12 @@ conf.pickers = {
   oldfiles = {
     prompt_title = "Recent Files",
   },
+  find_files = {
+    hidden = true,
+  },
 }
 
+conf.defaults.file_ignore_patterns = { "node_modules", ".git" }
 conf.extensions_list = { "themes", "terms", "fzf", "projects" }
 
 conf.defaults.mappings.i = {

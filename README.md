@@ -50,8 +50,6 @@ Please follow these steps:
 
 2. **Installation**:
 
-   **NOTE:** If you encountered an error after the plugin installation. Just restart `nvim`.
-
    - On Linux/MacOS:
 
      ```sh
@@ -66,6 +64,10 @@ Please follow these steps:
 ## ✨ Features
 
 - **Plugin Management**: Efficiently manage plugins with [lazy.nvim](https://github.com/folke/lazy.nvim).
+- **Compiler**: Compile your code with [compiler.nvim](https://github.com/Zeioth/compiler.nvim).
+- **Built-In Configuration Syncing**: synchronize the configuration with `<Space> + n + u`.
+- **Debugging**: Debug issues with [nvim-dap](https://github.com/mfussenegger/nvim-dap) with [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui).
+- **Tests**: Run tests with [neotest](https://github.com/nvim-neotest/neotest).
 - **Project Management**: Simplify project handling with [project.nvim](https://github.com/ahmedkhalf/project.nvim).
 - **File Explorer**: Navigate projects seamlessly using [nvim-tree.lua](https://github.com/nvim-tree/nvim-tree.lua).
 - **Diff Viewer**: Easily cycle through diffs with [diffview.nvim](https://github.com/sindrets/diffview.nvim).
