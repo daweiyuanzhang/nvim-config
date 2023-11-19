@@ -206,12 +206,25 @@ M.Neovim = {
   },
 }
 
+M.Sessions = {
+  plugin = true,
+  n = {
+    ["<leader>ss"] = { "<cmd>SessionStart<cr>", "Start", opts = { silent = true } },
+    ["<leader>so"] = { "<cmd>SessionStop<cr>", "Stop", opts = { silent = true } },
+    ["<leader>st"] = { "<cmd>SessionToggle<cr>", "Toggle", opts = { silent = true } },
+    ["<leader>sl"] = { "<cmd>SessionLoad<cr>", "Load", opts = { silent = true } },
+    ["<leader>sd"] = { "<cmd>SessionDelete<cr>", "Delete", opts = { silent = true } },
+  },
+}
+
 M.Telescope = {
   plugin = true,
   n = {
     ["<leader>fa"] = { "<cmd>Telescope autocommands<cr>", "Autocommmands", opts = { silent = true } },
 
     ["<leader>ff"] = { "<cmd>Telescope find_files<cr>", "Files", opts = { silent = true } },
+
+    ["<leader>fs"] = { "<cmd>Telescope persisted<cr>", "Sessions", opts = { silent = true } },
 
     ["<leader>fm"] = { "<cmd>Telescope marks<cr>", "Marks", opts = { silent = true } },
 
@@ -259,12 +272,12 @@ M.Toggleterm = {
     ["<leader>tf"] = { "<cmd>ToggleTerm direction=float<cr>", "Float Terminal", opts = { silent = true } },
 
     ["<leader>th"] = {
-      "<cmd>ToggleTerm size=10 direction=horizontal<cr>",
+      "<cmd>ToggleTerm direction=horizontal<cr>",
       "Horizontal Terminal",
       opts = { silent = true },
     },
 
-    ["<leader>tv"] = { "<cmd>ToggleTerm size=50 direction=vertical<cr>", "Vertical Terminal", opts = { silent = true } },
+    ["<leader>tv"] = { "<cmd>ToggleTerm direction=vertical<cr>", "Vertical Terminal", opts = { silent = true } },
   },
 }
 
