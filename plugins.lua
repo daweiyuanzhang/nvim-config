@@ -11,6 +11,15 @@ local plugins = {
     config = true,
   },
 
+  {
+    "AckslD/swenv.nvim",
+    init = function()
+      require("core.utils").load_mappings "Swenv"
+    end,
+    ft = "python",
+    opts = {},
+  },
+
   -- Show Indentlines
   {
     "lukas-reineke/indent-blankline.nvim",
@@ -44,6 +53,7 @@ local plugins = {
             p = { name = " Plugins" },
             t = { name = " Terminal" },
             T = { name = "󰙨 Tests" },
+            v = { name = " Venv" },
           },
         },
       }
@@ -116,20 +126,20 @@ local plugins = {
   {
     "neovim/nvim-lspconfig",
     config = function()
-      require "custom.configs.lspconfig"
+      require "custom.configs.lsp.lspconfig"
     end,
     dependencies = {
       -- Formatting
       {
         "stevearc/conform.nvim",
-        opts = require "custom.configs.conform",
+        opts = require "custom.configs.lsp.conform",
       },
       -- Linting
       {
         "mfussenegger/nvim-lint",
         enabled = false,
         config = function()
-          require "custom.configs.nvim-lint"
+          require "custom.configs.lsp.nvim-lint"
         end,
       },
       -- For Typescript
@@ -145,18 +155,6 @@ local plugins = {
           },
         },
       },
-      -- Start/Stop LSP when focus is lost/gained
-      -- {
-      --   "hinell/lsp-timeout.nvim",
-      --   config = function()
-      --     vim.g["lsp-timeout-config"] = {
-      --       stopTimeout = 0,
-      --       startTimeout = 1,
-      --       silent = true, -- true to suppress notifications
-      --     }
-      --   end,
-      -- },
-      -- Package Installer
       {
         "williamboman/mason.nvim",
         init = function()
@@ -172,8 +170,12 @@ local plugins = {
           "MasonUninstallAll",
           "MasonLog",
         },
-        opts = require "custom.configs.mason",
-        dependencies = "williamboman/mason-lspconfig.nvim",
+        dependencies = {
+          "williamboman/mason-lspconfig.nvim",
+          config = function()
+            require "custom.configs.lsp.mason"
+          end,
+        },
       },
       -- Improve Other LSP Functionalities
       {
@@ -181,16 +183,16 @@ local plugins = {
         init = function()
           require("core.utils").load_mappings "Lspsaga"
         end,
-        opts = require "custom.configs.lspsaga",
+        opts = require "custom.configs.lsp.lspsaga",
       },
       -- For Plugin Development
       {
         "folke/neodev.nvim",
-        opts = require "custom.configs.neodev",
+        opts = require "custom.configs.lsp.neodev",
       },
     },
   },
-
+  -- Package Installer
   -- Sessions
   {
     "olimorris/persisted.nvim",
@@ -472,7 +474,7 @@ local plugins = {
       require("core.utils").load_mappings "Trouble"
     end,
     cmd = { "TroubleToggle", "Trouble" },
-    opts = require "custom.configs.trouble",
+    opts = require "custom.configs.lsp.trouble",
   },
 
   -- For Java
