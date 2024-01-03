@@ -11,6 +11,7 @@ local plugins = {
     config = true,
   },
 
+  -- For switching between Python venv
   {
     "AckslD/swenv.nvim",
     init = function()
@@ -192,7 +193,7 @@ local plugins = {
       },
     },
   },
-  -- Package Installer
+
   -- Sessions
   {
     "olimorris/persisted.nvim",
@@ -599,6 +600,12 @@ local plugins = {
       },
     },
     opts = {},
+  },
+
+  -- Just For Fun
+  {
+    "eandrju/cellular-automaton.nvim",
+    cmd = "CellularAutomaton",
   },
 }
 
