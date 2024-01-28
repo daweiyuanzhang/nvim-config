@@ -1,5 +1,14 @@
 ---@type NvPluginSpec[]
 local plugins = {
+  -- Marks
+  {
+    "ThePrimeagen/harpoon",
+    init = function()
+      require("core.utils").load_mappings "Harpoon"
+    end,
+    opts = {},
+  },
+
   -- For Flutter Development
   {
     "akinsho/flutter-tools.nvim",
@@ -48,6 +57,7 @@ local plugins = {
             s = { name = "󰔚 Sessions" },
             f = { name = " Find" },
             g = { name = "󰊢 Git" },
+            h = { name = " Harpoon" },
             l = { name = " LSP" },
             n = { name = " Neovim" },
             o = { name = " Options" },

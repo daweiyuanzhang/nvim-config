@@ -23,6 +23,8 @@ M.override = {
 
 ---@type HLTable
 M.add = {
+  WinBar = { link = "Normal" },
+  WinBarNC = { link = "Normal" },
   NvimTreeOpenedFolderName = { fg = "green", bold = false },
   DiffviewDiffAdd = { fg = "black", bg = "green" },
   DiffviewDiffChange = { fg = "black", bg = "light_grey" },
