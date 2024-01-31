@@ -130,7 +130,7 @@ M.ui = {
   -- lazyload it when there are 1+ buffers
   tabufline = {
     show_numbers = false,
-    enabled = false,
+    enabled = true,
     lazyload = true,
     -- overriden_modules = function(modules)
     --   modules[3] = (function()
@@ -140,7 +140,7 @@ M.ui = {
   },
 
   nvdash = {
-    load_on_startup = false,
+    load_on_startup = true,
     header = get_header(),
     buttons = {
       { "  Find File", "Spc f f", "Telescope find_files" },
