@@ -127,16 +127,19 @@ M.ui = {
     end,
   },
 
-  -- lazyload it when there are 1+ buffers
+  -- lazyload it when there are 1+ tabs
   tabufline = {
     show_numbers = false,
     enabled = true,
     lazyload = true,
-    -- overriden_modules = function(modules)
-    --   modules[3] = (function()
-    --     return " %#TblineFill#%@v:lua.ClickUpdate@  %#TblineFill#%@v:lua.ClickGit@  %#TblineFill#%@v:lua.RunCode@  %#TblineFill#%@v:lua.ClickSplit@  "
-    --   end)()
-    -- end,
+    overriden_modules = function(modules)
+      modules[2] = (function()
+        return "%#TblineFill#" .. "%=" -- empty space
+      end)()
+      -- modules[3] = (function()
+      --   return " %#TblineFill#%@v:lua.ClickUpdate@  %#TblineFill#%@v:lua.ClickGit@  %#TblineFill#%@v:lua.RunCode@  %#TblineFill#%@v:lua.ClickSplit@  "
+      -- end)()
+    end,
   },
 
   nvdash = {

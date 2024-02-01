@@ -53,7 +53,7 @@ local global = {
   skip_ts_context_commentstring_module = true,
 }
 
-vim.opt.shortmess:append "Aco" -- Disable asking
+vim.opt.shortmess:append "Ac" -- Disable asking
 vim.opt.whichwrap:append "<,>,[,],h,l"
 vim.opt.iskeyword:append "-"
 
