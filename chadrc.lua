@@ -33,8 +33,8 @@ end
 local highlights = require "custom.highlights"
 
 M.ui = {
-  theme = "gruvchad",
-  theme_toggle = { "gruvchad", "one_light" },
+  theme = "mountain",
+  theme_toggle = { "mountain", "one_light" },
   lsp_semantic_tokens = false, -- needs nvim v0.9, just adds highlight groups for lsp semantic tokens
   hl_override = highlights.override,
   hl_add = highlights.add,
@@ -139,6 +139,9 @@ M.ui = {
       -- modules[3] = (function()
       --   return " %#TblineFill#%@v:lua.ClickUpdate@  %#TblineFill#%@v:lua.ClickGit@  %#TblineFill#%@v:lua.RunCode@  %#TblineFill#%@v:lua.ClickSplit@  "
       -- end)()
+      modules[4] = (function()
+        return " "
+      end)()
     end,
   },
 
