@@ -230,9 +230,8 @@ autocmd("FileType", {
         "-data",
         workspace_dir,
       },
-      on_attach = require("custom.configs.lsp").on_attach,
-      capabilities = require("custom.configs.lsp").capabilities,
-
+      on_attach = require("custom.plugins.lsp.opts").on_attach,
+      capabilities = require("custom.plugins.lsp.opts").capabilities,
       -- 💀
       -- This is the default if not provided, you can remove it. Or adjust as needed.
       -- One dedicated LSP server & client will be started per unique root_dir
@@ -295,4 +294,12 @@ autocmd("FileType", {
     -- or attaches to an existing client & server depending on the `root_dir`.
     jdtls.start_or_attach(config)
   end,
+})
+
+autocmd({ "FileType" }, {
+  pattern = { "help", "text", "log" },
+  callback = function()
+    vim.opt_local.scrolloff = 999
+  end,
+  desc = "Keep the cursor in the middle of the screen when scrolling",
 })
