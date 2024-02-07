@@ -4,6 +4,13 @@ local fn = vim.fn
 local cwd = vim.fn.stdpath "config" .. "/"
 local config_dir = { cwd }
 
+M.LspLens = {
+  plugin = true,
+  n = {
+    ["<leader>ll"] = { "<cmd>LspLensToggle<cr>", "Toggle Code Lens", opts = { silent = true } },
+  },
+}
+
 M.Harpoon = {
   plugin = true,
   n = {
@@ -327,6 +334,14 @@ M.Toggleterm = {
     },
 
     ["<leader>tv"] = { "<cmd>ToggleTerm direction=vertical<cr>", "Vertical Terminal", opts = { silent = true } },
+
+    ["<leader>gg"] = {
+      function()
+        ClickGit()
+      end,
+      "Lazygit",
+      opts = { silent = true },
+    },
   },
 }
 
@@ -410,36 +425,56 @@ if vim.fn.has "nvim-0.10" == 1 then
   }
 end
 
-M.Git = {
+M.GitBlame = {
   plugin = true,
   n = {
-    ["<leader>gg"] = {
+
+    ["<leader>gO"] = { "<cmd>GitBlameOpenCommitURL<cr>", "Open Commit Url", opts = { silent = true } },
+
+    ["<leader>gc"] = { "<cmd>GitBlameCopyCommitURL<cr>", "Copy Commit Url", opts = { silent = true } },
+
+    ["<leader>gf"] = { "<cmd>GitBlameOpenFileURL<cr>", "Open File Url", opts = { silent = true } },
+
+    ["<leader>gC"] = { "<cmd>GitBlameCopyFileURL<cr>", "Copy File Url", opts = { silent = true } },
+
+    ["<leader>gs"] = { "<cmd>GitBlameCopySHA<cr>", "Copy SHA", opts = { silent = true } },
+
+    ["<leader>gt"] = {
       function()
-        ClickGit()
+        if vim.g.gitblame_enabled ~= true then
+          vim.cmd "GitBlameEnable"
+          vim.g.gitblame_enabled = true
+        else
+          vim.cmd "GitBlameDisable"
+          vim.g.gitblame_enabled = false
+        end
       end,
-      "Lazygit",
+      "Toggle Blame",
       opts = { silent = true },
     },
+  },
+}
+
+M.GitSigns = {
+  plugin = true,
+  n = {
+    ["<leader>gp"] = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk", opts = { silent = true } },
 
     ["<leader>gj"] = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk", opts = { silent = true } },
 
     ["<leader>gk"] = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk", opts = { silent = true } },
 
-    ["<leader>gl"] = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "Blame", opts = { silent = true } },
-
-    ["<leader>gp"] = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk", opts = { silent = true } },
-
-    ["<leader>gr"] = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk", opts = { silent = true } },
-
-    ["<leader>gR"] = { "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer", opts = { silent = true } },
-
-    ["<leader>gs"] = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage Hunk", opts = { silent = true } },
-
-    ["<leader>gu"] = {
-      "<cmd>lua reguire 'gitsigns'.undo_stage_hunk()<cr>",
-      "Undo Stgge Hunk",
+    ["<leader>gl"] = {
+      "<cmd>lua require 'gitsigns'.blame_line()<cr>",
+      "Blame Line",
       opts = { silent = true },
     },
+  },
+}
+
+M.Diffview = {
+  plugin = true,
+  n = {
     ["<leader>gd"] = {
       function()
         if next(require("diffview.lib").views) == nil then

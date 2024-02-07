@@ -1,5 +1,8 @@
 -- Show diffs
 return {
   "sindrets/diffview.nvim",
-  event = "VeryLazy",
+  init = function()
+    require("core.utils").load_mappings "Diffview"
+  end,
+  event = "User FilePost",
 }
