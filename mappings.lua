@@ -4,6 +4,34 @@ local fn = vim.fn
 local cwd = vim.fn.stdpath "config" .. "/"
 local config_dir = { cwd }
 
+M.Oil = {
+  plugin = true,
+  n = {
+    ["<leader>O"] = { "<cmd>Oil --float<cr>", "Open Oil", opts = { silent = true } },
+  },
+}
+
+M.SideBar = {
+  plugin = true,
+  n = {
+    ["<leader>e"] = {
+      function()
+        -- if vim.bo.filetype ~= "SidebarNvim" then
+        --   vim.cmd [[
+        --   SidebarNvimOpen
+        --   SidebarNvimFocus
+        --   ]]
+        -- else
+        --   vim.cmd "SidebarNvimClose"
+        -- end
+        vim.cmd "SidebarNvimToggle"
+      end,
+      "Toggle Explorer",
+      opts = { silent = true },
+    },
+  },
+}
+
 M.LspLens = {
   plugin = true,
   n = {
@@ -313,8 +341,6 @@ M.Telescope = {
     ["<leader>ls"] = { "<cmd>Telescope lsp_document_symbols<cr>", "Buffer Symbols", opts = { silent = true } },
 
     ["<leader>lS"] = { "<cmd>Telescope lsp_workspace_symbols<cr>", "Workspace Symbols", opts = { silent = true } },
-
-    ["<leader>go"] = { "<cmd>Telescope git_status<cr>", "Open changed file", opts = { silent = true } },
 
     ["<leader>gb"] = { "<cmd>Telescope git_branches<cr>", "Checkout branch", opts = { silent = true } },
 
