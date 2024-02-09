@@ -26,6 +26,17 @@ command("LuaSnipEdit", function()
   require("luasnip.loaders").edit_snippet_files()
 end, { nargs = "*", desc = "Edit the available snippets in the filetype" })
 
+command("RemoveEmptyLines", function()
+  vim.cmd ":g/^$/d"
+  -- :v/./d
+  --
+  -- :g/^\s*$/d
+  -- :v/\S/d
+end, { nargs = "*", desc = "Remove all empty lines" })
+command("RemoveTrailingSpaces", function()
+  vim.cmd ":%s/s+$//e"
+end, { nargs = "*", desc = "Remove all trailing spaces " })
+
 function ClickGit()
   local status_ok, _ = pcall(require, "toggleterm")
   if not status_ok then
@@ -39,6 +50,24 @@ end
 
 function ClickSplit()
   vim.cmd "vsp"
+end
+
+-- Function to delete the first buffer if it's empty
+-- From: tomando
+function DeleteFirstEmptyBuffer()
+  local buffers = vim.api.nvim_list_bufs()
+
+  -- Check if there are more than one buffer
+  if #buffers > 1 then
+    for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+      local buffer_lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
+      -- If it's the first buffer and it's empty, delete it
+      if bufnr == 1 and #buffer_lines == 1 and buffer_lines[1] == "" then
+        vim.api.nvim_buf_delete(bufnr, { force = false })
+        return
+      end
+    end
+  end
 end
 
 function ClickUpdate()
