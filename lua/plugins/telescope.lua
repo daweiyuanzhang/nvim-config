@@ -1,9 +1,6 @@
 -- NOTE: Fuzzy Finder
 return {
   "nvim-telescope/telescope.nvim",
-  init = function()
-    require("core.utils").load_mappings "Telescope"
-  end,
   dependencies = {
     {
       "nvim-telescope/telescope-fzf-native.nvim",
@@ -13,12 +10,11 @@ return {
       end,
     },
   },
-  opts = function()
-    local conf = require "plugins.configs.telescope"
+  opts = function(_, opts)
     local actions = require "telescope.actions"
     local trouble = require "trouble.providers.telescope"
 
-    conf.pickers = {
+    opts.pickers = {
       oldfiles = {
         prompt_title = "Recent Files",
       },
@@ -27,11 +23,11 @@ return {
       },
     }
 
-    conf.defaults.path_display = { "smart" }
-    conf.defaults.file_ignore_patterns = { "node_modules", ".git" }
-    conf.extensions_list = { "themes", "terms", "fzf", "projects", "persisted", "harpoon" }
+    opts.defaults.path_display = { "smart" }
+    opts.defaults.file_ignore_patterns = { "node_modules", ".git" }
+    opts.extensions_list = { "themes", "terms", "fzf", "projects", "persisted", "harpoon" }
 
-    conf.defaults.mappings.i = {
+    opts.defaults.mappings.i = {
       ["<Tab>"] = actions.move_selection_next,
       ["<S-Tab>"] = actions.move_selection_previous,
       ["<C-j>"] = actions.toggle_selection + actions.move_selection_worse,
@@ -39,6 +35,6 @@ return {
       ["<C-q>"] = trouble.open_with_trouble,
     }
 
-    return conf
+    return opts
   end,
 }

@@ -46,14 +46,14 @@ return {
     -- NOTE: Formatting
     {
       "stevearc/conform.nvim",
-      opts = require "custom.plugins.lsp.conform",
+      opts = require "plugins.lsp.conform",
     },
     -- NOTE: Linting
     {
       "mfussenegger/nvim-lint",
       enabled = false,
       config = function()
-        require "custom.plugins.lsp.nvim-lint"
+        require "plugins.lsp.nvim-lint"
       end,
     },
     -- NOTE: For Typescript
@@ -72,10 +72,6 @@ return {
     -- NOTE: Package installer
     {
       "williamboman/mason.nvim",
-      init = function()
-        require("core.utils").load_mappings "Mason"
-        require("core.utils").load_mappings "LSP"
-      end,
       cmd = {
         "Mason",
         "MasonInstall",
@@ -88,7 +84,7 @@ return {
       dependencies = {
         "williamboman/mason-lspconfig.nvim",
         config = function()
-          require "custom.plugins.lsp.mason"
+          require "plugins.lsp.mason"
         end,
       },
       opts = {
@@ -101,31 +97,22 @@ return {
     -- NOTE: Improve Other LSP Functionalities
     {
       "nvimdev/lspsaga.nvim",
-      init = function()
-        require("core.utils").load_mappings "Lspsaga"
-      end,
-      opts = require "custom.plugins.lsp.lspsaga",
+      opts = require "plugins.lsp.lspsaga",
     },
     -- NOTE: For Plugin Development
     {
       "folke/neodev.nvim",
-      opts = require "custom.plugins.lsp.neodev",
+      opts = require "plugins.lsp.neodev",
     },
     -- NOTE: For managing error and warning messages
     {
       "folke/trouble.nvim",
-      init = function()
-        require("core.utils").load_mappings "Trouble"
-      end,
       cmd = { "TroubleToggle", "Trouble" },
-      opts = require "custom.plugins.lsp.trouble",
+      opts = require "plugins.lsp.trouble",
     },
     -- NOTE: Displaying References and Definition
     {
       "VidocqH/lsp-lens.nvim",
-      init = function()
-        require("core.utils").load_mappings "LspLens"
-      end,
       opts = {
         enable = true,
       },

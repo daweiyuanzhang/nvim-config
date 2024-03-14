@@ -1,9 +1,6 @@
 -- NOTE: Tests
 return {
   "nvim-neotest/neotest",
-  init = function()
-    require("core.utils").load_mappings "Neotest"
-  end,
   dependencies = {
     "nvim-neotest/neotest-python",
     "nvim-neotest/neotest-go",

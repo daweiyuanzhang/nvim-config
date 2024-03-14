@@ -1,13 +1,23 @@
 -- NOTE: Lazy(Plugin Manager) options
 return {
-  lockfile = vim.fn.stdpath "config" .. "/lua/custom/lazy-lock.json", -- lockfile generated after running update.
+  defaults = { lazy = true },
+  install = { colorscheme = { "nvchad" } },
   change_detection = {
     -- automatically check for config file changes and reload the ui
     enabled = true,
     notify = false, -- get a notification when changes are found
   },
+
   diff = {
     cmd = "diffview.nvim",
+  },
+  ui = {
+    icons = {
+      ft = "",
+      lazy = "󰂠 ",
+      loaded = "",
+      not_loaded = "",
+    },
   },
   performance = {
     rtp = {
@@ -42,4 +52,5 @@ return {
       },
     },
   },
+
 }

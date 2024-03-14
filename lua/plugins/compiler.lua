@@ -1,9 +1,6 @@
 -- NOTE: Code Runner
 return {
   "Zeioth/compiler.nvim",
-  init = function()
-    require("core.utils").load_mappings "Compiler"
-  end,
   cmd = { "CompilerOpen", "CompilerToggleResults", "CompilerRedo" },
   dependencies = {
     {

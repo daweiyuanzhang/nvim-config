@@ -2,7 +2,7 @@
 ---@type ChadrcConfig
 local M = {}
 
-local headers = require "custom.core.headers"
+local headers = require "core.headers"
 
 local function get_venv(variable)
   local venv = os.getenv(variable)
@@ -31,7 +31,7 @@ local function get_header()
   end
 end
 
-local highlights = require "custom.highlights"
+local highlights = require "highlights"
 
 M.ui = {
   theme = "mountain",
@@ -39,9 +39,7 @@ M.ui = {
   lsp_semantic_tokens = false, -- needs nvim v0.9, just adds highlight groups for lsp semantic tokens
   hl_override = highlights.override,
   hl_add = highlights.add,
-  extended_integrations = {
-    "notify",
-  }, -- these aren't compiled by default, ex: "alpha", "notify"
+  extended_integrations = {}, -- these aren't compiled by default, ex: "alpha", "notify"
   telescope = { style = "borderless" }, -- borderless / bordered
   cmp = {
     icons = true,
@@ -55,35 +53,9 @@ M.ui = {
     -- default/round/block/arrow separators work only for default statusline theme
     -- round and block will work for minimal theme only
     separator_style = "round",
-    overriden_modules = function(modules)
-      local config = require("core.utils").load_config().ui.statusline
-      local sep_style = config.separator_style
-
-      sep_style = (sep_style ~= "round" and sep_style ~= "block") and "block" or sep_style
-
-      local default_sep_icons = {
-        round = { left = "", right = "" },
-        block = { left = "█", right = "█" },
-      }
-
-      local separators = (type(sep_style) == "table" and sep_style) or default_sep_icons[sep_style]
-
-      local sep_l = separators["left"]
-      local sep_r = "%#St_sep_r#" .. separators["right"] .. " %#ST_EmptySpace#"
-
-      local function gen_block(icon, txt, sep_l_hlgroup, iconHl_group, txt_hl_group)
-        return sep_l_hlgroup .. sep_l .. iconHl_group .. icon .. " " .. txt_hl_group .. " " .. txt .. sep_r
-      end
-
-      local noice_ok, noice = pcall(require, "noice.api")
-      modules[7] = (function()
-        if noice_ok and noice.status.command.has() then
-          return "%#NoTexthl#" .. noice.status.command.get() .. " "
-        else
-          return " "
-        end
-      end)()
-      modules[5] = (function()
+    order = { "mode", "file", "git", "%=", "python_venv", "diagnostics", "command", "clients", "cwd", "cursor" },
+    modules = {
+      python_venv = function()
         if vim.bo.filetype ~= "python" then
           return " "
         end
@@ -94,8 +66,16 @@ M.ui = {
         else
           return "  " .. venv
         end
-      end)()
-      modules[9] = (function()
+      end,
+      command = function()
+        local noice_ok, noice = pcall(require, "noice.api")
+        if noice_ok and noice.status.command.has() then
+          return " %#St_gitIcons#" .. noice.status.command.get() .. " "
+        else
+          return " "
+        end
+      end,
+      clients = function()
         local clients = {}
         local buf = vim.api.nvim_get_current_buf()
 
@@ -116,16 +96,10 @@ M.ui = {
         if #clients == 0 then
           return ""
         else
-          return (
-            vim.o.columns > 100
-            and gen_block("", table.concat(clients, ", "), "%#St_lsp_sep#", "%#St_lsp_bg#", "%#St_lsp_txt#")
-          ) or "  LSP "
+          return (vim.o.columns > 100 and (" %#St_gitIcons#" .. table.concat(clients, ", ") .. " ")) or "  LSP "
         end
-      end)()
-      modules[11] = (function()
-        return gen_block("", "%L", "%#St_Pos_sep#", "%#St_Pos_bg#", "%#St_Pos_txt#")
-      end)()
-    end,
+      end,
+    },
   },
 
   -- lazyload it when there are 1+ tabs
@@ -133,17 +107,15 @@ M.ui = {
     show_numbers = false,
     enabled = true,
     lazyload = true,
-    overriden_modules = function(modules)
-      modules[2] = (function()
-        return "%#TblineFill#" .. "%=" -- empty space
-      end)()
-      -- modules[3] = (function()
-      --   return " %#TblineFill#%@v:lua.ClickUpdate@  %#TblineFill#%@v:lua.ClickGit@  %#TblineFill#%@v:lua.RunCode@  %#TblineFill#%@v:lua.ClickSplit@  "
-      -- end)()
-      modules[4] = (function()
-        return " "
-      end)()
-    end,
+    order = { "treeOffset", "blank", "tabs", "btns" },
+    modules = {
+      blank = function()
+        return "%#Normal#" .. "%=" -- empty space
+      end,
+    },
+    -- modules[3] = (function()
+    --   return " %#TblineFill#%@v:lua.ClickUpdate@  %#TblineFill#%@v:lua.ClickGit@  %#TblineFill#%@v:lua.RunCode@  %#TblineFill#%@v:lua.ClickSplit@  "
+    -- end)()
   },
 
   nvdash = {
@@ -163,11 +135,11 @@ M.ui = {
   cheatsheet = { theme = "grid" }, -- simple/grid
 }
 
-M.lazy_nvim = require "custom.core.lazy" -- config for lazy.nvim startup options
+M.lazy_nvim = require "core.lazy" -- config for lazy.nvim startup options
 
-M.plugins = "custom.plugins"
+M.plugins = "plugins"
 
 -- check core.mappings for table structure
-M.mappings = require "custom.mappings"
+M.mappings = require "mappings"
 
 return M

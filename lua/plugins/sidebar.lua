@@ -2,9 +2,6 @@
 return {
   "sidebar-nvim/sidebar.nvim",
   enabled = false,
-  init = function()
-    require("core.utils").load_mappings "SideBar"
-  end,
   cmd = {
     "SidebarNvimToggle",
     "SidebarNvimOpen",

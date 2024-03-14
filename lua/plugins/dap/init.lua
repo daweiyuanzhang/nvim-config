@@ -1,9 +1,6 @@
 -- NOTE: Debugging
 return {
   "rcarriga/nvim-dap-ui",
-  init = function()
-    require("core.utils").load_mappings "Dap"
-  end,
   dependencies = {
     {
       "mfussenegger/nvim-dap",
@@ -27,19 +24,19 @@ return {
         -- end
 
         -- NOTE: Make sure to install the needed files/exectubles through mason
-        require "custom.plugins.dap.settings.cpptools"
-        require "custom.plugins.dap.settings.netcoredbg"
-        require "custom.plugins.dap.settings.godot"
-        require "custom.plugins.dap.settings.bash-debug-adapter"
-        require "custom.plugins.dap.settings.php-debug-adapter"
-        require "custom.plugins.dap.settings.dart-debug-adapter"
-        require "custom.plugins.dap.settings.chrome-debug-adapter"
-        require "custom.plugins.dap.settings.firefox-debug-adapter"
-        require "custom.plugins.dap.settings.java-debug"
-        require "custom.plugins.dap.settings.node-debug2"
-        require "custom.plugins.dap.settings.debugpy"
-        require "custom.plugins.dap.settings.go-debug-adapter"
-        require "custom.plugins.dap.settings.js-debug"
+        require "plugins.dap.settings.cpptools"
+        require "plugins.dap.settings.netcoredbg"
+        require "plugins.dap.settings.godot"
+        require "plugins.dap.settings.bash-debug-adapter"
+        require "plugins.dap.settings.php-debug-adapter"
+        require "plugins.dap.settings.dart-debug-adapter"
+        require "plugins.dap.settings.chrome-debug-adapter"
+        require "plugins.dap.settings.firefox-debug-adapter"
+        require "plugins.dap.settings.java-debug"
+        require "plugins.dap.settings.node-debug2"
+        require "plugins.dap.settings.debugpy"
+        require "plugins.dap.settings.go-debug-adapter"
+        require "plugins.dap.settings.js-debug"
       end,
     },
   },

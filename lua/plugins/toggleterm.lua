@@ -1,9 +1,6 @@
 -- NOTE: Terminal Integration
 return {
   "akinsho/toggleterm.nvim",
-  init = function()
-    require("core.utils").load_mappings "Toggleterm"
-  end,
   cmd = {
     "ToggleTerm",
     "ToggleTermSendCurrentLine",

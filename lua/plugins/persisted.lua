@@ -10,9 +10,6 @@ return {
     "SessionLoadFromFile",
     "SessionLoadDelete",
   },
-  init = function()
-    require("core.utils").load_mappings "Sessions"
-  end,
   opts = {
     save_dir = vim.fn.expand(vim.fn.stdpath "data" .. "/sessions/"), -- directory where session files are saved
     silent = false, -- silent nvim message when sourcing session file

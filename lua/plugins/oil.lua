@@ -3,9 +3,6 @@ return {
   "stevearc/oil.nvim",
   cmd = "Oil",
   enabled = false,
-  init = function()
-    require("core.utils").load_mappings "Oil"
-  end,
   opts = {
     -- Send deleted files to the trash instead of permanently deleting them (:help oil-trash)
     delete_to_trash = false,
