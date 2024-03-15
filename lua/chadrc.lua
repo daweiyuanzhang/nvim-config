@@ -45,15 +45,24 @@ M.ui = {
     icons = true,
     lspkind_text = true,
     style = "default", -- default/flat_light/flat_dark/atom/atom_colored
-    border_color = "grey_fg", -- only applicable for "default" style, use color names from base30 variables
-    selected_item_bg = "colored", -- colored / simple
   },
   statusline = {
     theme = "minimal", -- default/vscode/vscode_colored/minimal
     -- default/round/block/arrow separators work only for default statusline theme
     -- round and block will work for minimal theme only
     separator_style = "round",
-    order = { "mode", "file", "git", "%=", "python_venv", "diagnostics", "command", "clients", "cwd", "cursor" },
+    order = {
+      "mode",
+      "file",
+      "git",
+      "%=",
+      "python_venv",
+      "diagnostics",
+      "command",
+      "clients",
+      "cwd",
+      "cursor",
+    },
     modules = {
       python_venv = function()
         if vim.bo.filetype ~= "python" then
@@ -102,20 +111,17 @@ M.ui = {
     },
   },
 
-  -- lazyload it when there are 1+ tabs
   tabufline = {
-    show_numbers = false,
     enabled = true,
-    lazyload = true,
     order = { "treeOffset", "blank", "tabs", "btns" },
     modules = {
       blank = function()
         return "%#Normal#" .. "%=" -- empty space
       end,
+      -- custom_btns = function()
+      --   return " %#Normal#%@v:lua.ClickGit@  %#Normal#%@v:lua.RunCode@  %#Normal#%@v:lua.ClickSplit@  "
+      -- end,
     },
-    -- modules[3] = (function()
-    --   return " %#TblineFill#%@v:lua.ClickUpdate@  %#TblineFill#%@v:lua.ClickGit@  %#TblineFill#%@v:lua.RunCode@  %#TblineFill#%@v:lua.ClickSplit@  "
-    -- end)()
   },
 
   nvdash = {
@@ -135,11 +141,33 @@ M.ui = {
   cheatsheet = { theme = "grid" }, -- simple/grid
 }
 
-M.lazy_nvim = require "core.lazy" -- config for lazy.nvim startup options
+M.base46 = {
+  integrations = {
+    "notify",
+    "blankline",
+    "cmp",
+    "defaults",
+    "devicons",
+    "git",
+    "lsp",
+    "mason",
+    "nvcheatsheet",
+    "nvdash",
+    "nvimtree",
+    "statusline",
+    "syntax",
+    "treesitter",
+    "tbline",
+    "telescope",
+    "whichkey",
+  },
+}
 
-M.plugins = "plugins"
+-- M.lazy_nvim = require "core.lazy" -- config for lazy.nvim startup options
+
+-- M.plugins = "plugins"
 
 -- check core.mappings for table structure
-M.mappings = require "mappings"
+-- M.mappings = require "mappings"
 
 return M
