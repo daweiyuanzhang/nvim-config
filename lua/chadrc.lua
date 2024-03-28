@@ -60,10 +60,13 @@ M.ui = {
       "diagnostics",
       "command",
       "clients",
+      "total_lines",
       "cwd",
-      "cursor",
     },
     modules = {
+      total_lines = function()
+        return " %#St_gitIcons#" .. "Lines: %L "
+      end,
       harpoon = function()
         -- simplified version of this https://github.com/letieu/harpoon-lualine
         local options = {
@@ -152,15 +155,15 @@ M.ui = {
 
   tabufline = {
     enabled = true,
-    -- order = { "treeOffset", "blank", "tabs", "btns" },
-    -- modules = {
-    --   blank = function()
-    --     return "%#Normal#" .. "%=" -- empty space
-    --   end,
-    --   -- custom_btns = function()
-    --   --   return " %#Normal#%@v:lua.ClickGit@  %#Normal#%@v:lua.RunCode@  %#Normal#%@v:lua.ClickSplit@  "
-    --   -- end,
-    -- },
+    order = { "treeOffset", "buffers", "tabs", "btns" },
+    modules = {
+      blank = function()
+        return "%#Normal#" .. "%=" -- empty space
+      end,
+      -- custom_btns = function()
+      --   return " %#Normal#%@v:lua.ClickGit@  %#Normal#%@v:lua.RunCode@  %#Normal#%@v:lua.ClickSplit@  "
+      -- end,
+    },
   },
 
   nvdash = {
@@ -177,7 +180,7 @@ M.ui = {
     },
   },
 
-  cheatsheet = { theme = "grid" }, -- simple/grid
+  cheatsheet = { theme = "simple" }, -- simple/grid
 }
 
 M.base46 = {
