@@ -8,14 +8,6 @@ local augroup = vim.api.nvim_create_augroup
 -- General Settings
 local general = augroup("General", { clear = true })
 
-autocmd("BufReadPost", {
-  callback = function()
-    DeleteFirstEmptyBuffer()
-  end,
-  group = general,
-  desc = "Delete First Empty Buffer",
-})
-
 autocmd("VimEnter", {
   callback = function(data)
     -- buffer is a directory
@@ -86,10 +78,11 @@ autocmd("TextYankPost", {
   desc = "Highlight when yanking",
 })
 
-autocmd({ "BufEnter", "BufNew" }, {
+autocmd({ "BufReadPost", "BufNewFile" }, {
   callback = function()
     vim.o.showtabline = 0
   end,
+  once = true,
   group = general,
   desc = "Disable Tabline",
 })
