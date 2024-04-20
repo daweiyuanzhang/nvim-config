@@ -65,17 +65,31 @@ M.ui = {
     },
     modules = {
       total_lines = function()
+        local separators = {}
         local config = require("nvconfig").ui.statusline
+        local theme = config.theme
         local sep_style = config.separator_style
 
-        sep_style = (sep_style ~= "round" and sep_style ~= "block") and "block" or sep_style
-
-        local default_sep_icons = {
-          round = { left = "", right = "" },
-          block = { left = "█", right = "█" },
+        local mode = {
+          default = {
+            default = { left = "", right = "" },
+            round = { left = "", right = "" },
+            block = { left = "█", right = "█" },
+            arrow = { left = "", right = "" },
+          },
+          minimal = {
+            default = { left = "█", right = "█" },
+            round = { left = "", right = "" },
+            block = { left = "█", right = "█" },
+            arrow = { left = "", right = "" },
+          },
         }
 
-        local separators = (type(sep_style) == "table" and sep_style) or default_sep_icons[sep_style]
+        if theme == "minimal" then
+          separators = (type(sep_style) == "table" and sep_style) or mode.minimal[sep_style]
+        else
+          separators = (type(sep_style) == "table" and sep_style) or mode.default[sep_style]
+        end
 
         local sep_l = separators["left"]
         local sep_end = "%#St_sep_r#" .. separators["right"]
@@ -85,6 +99,9 @@ M.ui = {
           return sep_l_hlgroup .. sep_l .. iconHl_group .. icon .. " " .. txt_hl_group .. " " .. txt .. sep_end
         end
 
+        if theme == "default" then
+          return "%#St_pos_sep#" .. sep_l .. "%#St_pos_icon# %#St_pos_text# %p %% "
+        end
         return gen_block("", "%L", "%#St_Pos_sep#", "%#St_Pos_bg#", "%#St_Pos_txt#")
       end,
 
@@ -195,7 +212,6 @@ M.ui = {
       { "󰈚  Recent Files", "Spc f r", "Telescope oldfiles" },
       { "󰈭  Find Word", "Spc f w", "Telescope live_grep" },
       { "  Find Projects", "Spc f p", "Telescope projects" },
-      { "󰔚  Find Sessions", "Spc f s", "Telescope persisted" },
       { "  Themes", "Spc f t", "Telescope themes" },
       { "  Mappings", "Spc n c", "NvCheatsheet" },
     },
