@@ -1,5 +1,4 @@
 -- NOTE: Neovim options
-require "nvchad.options"
 
 local options = {
   backup = false, -- creates a backup file
@@ -23,7 +22,7 @@ local options = {
   expandtab = true, -- convert tabs to spaces
   shiftwidth = 2, -- the number of spaces inserted for each indentation
   tabstop = 2, -- insert 2 spaces for a tab
-  cursorline = true, -- highlight the current line
+  cursorline = false, -- highlight the current line
   number = true, -- set numbered lines
   relativenumber = true, -- set relative numbered lines
   numberwidth = 5, -- set number column width to 4 {default 4}
@@ -51,10 +50,15 @@ local global = {
   random_header = false, -- Show random header
   skip_ts_context_commentstring_module = true,
   toggle_cmp = true,
+  ["loaded_node_provider"] = 0,
+  ["loaded_python3_provider"] = 0,
+  ["loaded_perl_provider"] = 0,
+  ["loaded_ruby_provider"] = 0,
+  toggle_theme_icon = "   ",
 }
 
 vim.opt.shortmess:append "Ac" -- Disable asking
-vim.opt.whichwrap:append "<,>,[,],h,l"
+vim.opt.whichwrap:append "<>[]hl"
 vim.opt.iskeyword:append "-"
 
 for name, value in pairs(options) do
@@ -64,3 +68,7 @@ end
 for name, value in pairs(global) do
   vim.g[name] = value
 end
+
+-- add binaries installed by mason.nvim to path
+local is_windows = vim.fn.has "win32" ~= 0
+vim.env.PATH = vim.fn.stdpath "data" .. "/mason/bin" .. (is_windows and ";" or ":") .. vim.env.PATH
