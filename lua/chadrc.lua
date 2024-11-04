@@ -24,7 +24,11 @@ end
 M.ui = {
   telescope = { style = "borderless" }, -- borderless / bordered
   cmp = {
-    style = "atom", -- default/flat_light/flat_dark/atom/atom_colored
+    lspkind_text = true,
+    style = "default", -- default/flat_light/flat_dark/atom/atom_colored
+    format_colors = {
+      tailwind = true,
+    },
   },
   statusline = {
     theme = "minimal", -- default/vscode/vscode_colored/minimal
@@ -44,13 +48,13 @@ M.ui = {
       "cwd",
       "total_lines",
     },
-    modules = require "core.statusline".modules,
+    modules = require("core.statusline").modules,
   },
 
   tabufline = {
     enabled = true,
     order = { "treeOffset", "buffers", "tabs", "btns" },
-    modules = require "core.tabufline".modules,
+    modules = require("core.tabufline").modules,
   },
 }
 
